@@ -1,0 +1,23 @@
+name: CI for PR Merge
+
+on:
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  ubuntu_build:
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v2
+      - uses: ./
+        id: one_value_select
+        with:
+          value0: hello
+      - name: Test One Value Select
+        shell: bash
+        env:
+          ACTUAL_VALUE: ${{ steps.one_value_select.outputs.selected_value }}
+        run: |
+          [[ "${ACTUAL_VALUE}" == hello ]] || \
+            (echo >&2 "Expected to equal hello." && exit 1)
+
