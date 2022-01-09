@@ -9,7 +9,9 @@ jobs:
     runs-on: ubuntu-20.04
     steps:
       - uses: actions/checkout@v2
+
       - uses: ./
+        name: One Value Select
         id: one_value_select
         with:
           value0: hello
@@ -21,3 +23,87 @@ jobs:
           [[ "${ACTUAL_VALUE}" == hello ]] || \
             (echo >&2 "Expected to equal hello." && exit 1)
 
+      - uses: ./
+        name: First Value Select
+        id: second_value_select
+        with:
+          value0: hello
+          value1: goodbye
+          value2: howdy
+          value3: partner
+          value4: chicken
+      - name: Test Second Value Select
+        shell: bash
+        env:
+          ACTUAL_VALUE: ${{ steps.one_value_select.outputs.selected_value }}
+        run: |
+          [[ "${ACTUAL_VALUE}" == hello ]] || \
+            (echo >&2 "Expected to equal hello." && exit 1)
+
+      - uses: ./
+        name: Second Value Select
+        id: second_value_select
+        with:
+          value0: 
+          value1: hello
+          value2: howdy
+          value3: partner
+          value4: chicken
+      - name: Test Second Value Select
+        shell: bash
+        env:
+          ACTUAL_VALUE: ${{ steps.one_value_select.outputs.selected_value }}
+        run: |
+          [[ "${ACTUAL_VALUE}" == hello ]] || \
+            (echo >&2 "Expected to equal hello." && exit 1)
+
+      - uses: ./
+        name: Third Value Select
+        id: third_value_select
+        with:
+          value0: 
+          value1: 
+          value2: hello
+          value3: partner
+          value4: chicken
+      - name: Test Third Value Select
+        shell: bash
+        env:
+          ACTUAL_VALUE: ${{ steps.one_value_select.outputs.selected_value }}
+        run: |
+          [[ "${ACTUAL_VALUE}" == hello ]] || \
+            (echo >&2 "Expected to equal hello." && exit 1)
+
+      - uses: ./
+        name: Fourth Value Select
+        id: fourth_value_select
+        with:
+          value0: 
+          value1: 
+          value2: 
+          value3: hello
+          value4: chicken
+      - name: Test Fourth Value Select
+        shell: bash
+        env:
+          ACTUAL_VALUE: ${{ steps.one_value_select.outputs.selected_value }}
+        run: |
+          [[ "${ACTUAL_VALUE}" == hello ]] || \
+            (echo >&2 "Expected to equal hello." && exit 1)
+
+      - uses: ./
+        name: Fifth Value Select
+        id: fifth_value_select
+        with:
+          value0: 
+          value1: 
+          value2: 
+          value3: 
+          value4: hello
+      - name: Test Fifth Value Select
+        shell: bash
+        env:
+          ACTUAL_VALUE: ${{ steps.one_value_select.outputs.selected_value }}
+        run: |
+          [[ "${ACTUAL_VALUE}" == hello ]] || \
+            (echo >&2 "Expected to equal hello." && exit 1)
