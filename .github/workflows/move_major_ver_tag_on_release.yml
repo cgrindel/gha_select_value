@@ -1,11 +1,3 @@
-# Select First Non-Empty Value GiHub Action
-
-GitHub Action to select the first non-empty value. This is paritcularly useful when selecting input
-values from different input locations.
-
-## Quickstart
-
-```yml
 name: Move Major Version Tag on Release
 
 on:
@@ -35,6 +27,3 @@ jobs:
       - uses: cgrindel/gha_move_major_version_tag@v1
         with:
           release_tag: ${{ steps.resolve_release_tag.outputs.resolved_value }}
-
-```
-
