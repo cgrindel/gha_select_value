@@ -25,7 +25,7 @@ jobs:
 
       - uses: ./
         name: First Value Select
-        id: second_value_select
+        id: first_value_select
         with:
           value0: hello
           value1: goodbye
@@ -35,7 +35,7 @@ jobs:
       - name: Test Second Value Select
         shell: bash
         env:
-          ACTUAL_VALUE: ${{ steps.one_value_select.outputs.selected_value }}
+          ACTUAL_VALUE: ${{ steps.first_value_select.outputs.selected_value }}
         run: |
           [[ "${ACTUAL_VALUE}" == hello ]] || \
             (echo >&2 "Expected to equal hello." && exit 1)
@@ -52,7 +52,7 @@ jobs:
       - name: Test Second Value Select
         shell: bash
         env:
-          ACTUAL_VALUE: ${{ steps.one_value_select.outputs.selected_value }}
+          ACTUAL_VALUE: ${{ steps.second_value_select.outputs.selected_value }}
         run: |
           [[ "${ACTUAL_VALUE}" == hello ]] || \
             (echo >&2 "Expected to equal hello." && exit 1)
@@ -69,7 +69,7 @@ jobs:
       - name: Test Third Value Select
         shell: bash
         env:
-          ACTUAL_VALUE: ${{ steps.one_value_select.outputs.selected_value }}
+          ACTUAL_VALUE: ${{ steps.third_value_select.outputs.selected_value }}
         run: |
           [[ "${ACTUAL_VALUE}" == hello ]] || \
             (echo >&2 "Expected to equal hello." && exit 1)
@@ -86,7 +86,7 @@ jobs:
       - name: Test Fourth Value Select
         shell: bash
         env:
-          ACTUAL_VALUE: ${{ steps.one_value_select.outputs.selected_value }}
+          ACTUAL_VALUE: ${{ steps.fourth_value_select.outputs.selected_value }}
         run: |
           [[ "${ACTUAL_VALUE}" == hello ]] || \
             (echo >&2 "Expected to equal hello." && exit 1)
@@ -103,7 +103,7 @@ jobs:
       - name: Test Fifth Value Select
         shell: bash
         env:
-          ACTUAL_VALUE: ${{ steps.one_value_select.outputs.selected_value }}
+          ACTUAL_VALUE: ${{ steps.fifth_value_select.outputs.selected_value }}
         run: |
           [[ "${ACTUAL_VALUE}" == hello ]] || \
             (echo >&2 "Expected to equal hello." && exit 1)
