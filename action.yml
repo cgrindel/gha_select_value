@@ -1,0 +1,40 @@
+name: Select the First Non-empty Value
+description: This action will select the first non-empty value. It is useful when routing values from different input locations.
+
+inputs:
+  value0:
+    required: true
+    type: string
+  value1:
+    type: string
+  value2:
+    type: string
+  value3:
+    type: string
+  value4:
+    type: string
+
+outputs:
+  selected_value:
+    description: The selected value.
+    value: ${{ steps.select_value.outputs.selected_value }}
+
+runs:
+  using: composite
+  steps:
+    - name: Select Value
+      id: select_value
+      shell: bash
+      env:
+        VALUE0: ${{ inputs.value0 }}
+        VALUE1: ${{ inputs.value1 }}
+        VALUE2: ${{ inputs.value2 }}
+        VALUE3: ${{ inputs.value3 }}
+        VALUE4: ${{ inputs.value4 }}
+      run: |
+        values=( "${VALUE0}" "${VALUE1}" "${VALUE2}" "${VALUE3}" "${VALUE4}" )
+        for value in "${values[@]}"; do
+          [[ ! -z "${value}" ]] && \
+            echo "::set-output name=selected_value::${value}" && \
+            break
+        done
