@@ -35,5 +35,6 @@ runs:
         for value in "${values[@]}"; do
           [[ ! -z "${value}" ]] && \
             echo "::set-output name=selected_value::${value}" && \
-            break
+            exit
         done
+        echo "::set-output name=selected_value::"
