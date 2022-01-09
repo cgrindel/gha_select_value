@@ -107,3 +107,14 @@ jobs:
         run: |
           [[ "${ACTUAL_VALUE}" == hello ]] || \
             (echo >&2 "Expected to equal hello." && exit 1)
+
+      - uses: ./
+        name: No Selectable Values
+        id: fifth_value_select
+      - name: Test Fifth Value Select
+        shell: bash
+        env:
+          ACTUAL_VALUE: ${{ steps.fifth_value_select.outputs.selected_value }}
+        run: |
+          [[ -z "${ACTUAL_VALUE}" ]] || \
+            (echo >&2 "Expected to be empty." && exit 1)

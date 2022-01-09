@@ -3,7 +3,6 @@ description: This action will select the first non-empty value. It is useful whe
 
 inputs:
   value0:
-    required: true
     type: string
   value1:
     type: string
