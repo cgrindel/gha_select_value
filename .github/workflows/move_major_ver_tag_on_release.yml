@@ -24,6 +24,7 @@ jobs:
         with: 
           value0: ${{ github.event.release.tag_name }}
           value1: ${{ github.event.inputs.release_tag }}
-      - uses: cgrindel/gha_move_major_version_tag@v1
+      # - uses: cgrindel/gha_move_major_version_tag@v1
+      - uses: cgrindel/gha_move_major_version_tag@debug_other_repo_using_action
         with:
           release_tag: ${{ steps.resolve_release_tag.outputs.resolved_value }}
