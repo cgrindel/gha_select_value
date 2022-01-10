@@ -26,4 +26,4 @@ jobs:
           value1: ${{ github.event.inputs.release_tag }}
       - uses: cgrindel/gha_move_major_version_tag@v1
         with:
-          release_tag: ${{ steps.resolve_release_tag.outputs.resolved_value }}
+          release_tag: ${{ steps.resolve_release_tag.outputs.selected_value }}
