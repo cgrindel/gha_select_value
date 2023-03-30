@@ -34,7 +34,7 @@ runs:
         values=( "${VALUE0}" "${VALUE1}" "${VALUE2}" "${VALUE3}" "${VALUE4}" )
         for value in "${values[@]}"; do
           [[ ! -z "${value}" ]] && \
-            echo "::set-output name=selected_value::${value}" && \
+            echo "selected_value={value}" >> $GITHUB_OUTPUT && \
             exit
         done
-        echo "::set-output name=selected_value::"
+        echo "selected_value=" >> $GITHUB_OUTPUT
