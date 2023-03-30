@@ -21,7 +21,7 @@ jobs:
           ACTUAL_VALUE: ${{ steps.one_value_select.outputs.selected_value }}
         run: |
           [[ "${ACTUAL_VALUE}" == hello ]] || \
-            (echo >&2 "Expected to equal hello." && exit 1)
+            (echo >&2 "Expected to equal 'hello'. actual: ${ACTUAL_VALUE}" && exit 1)
 
       - uses: ./
         name: First Value Select
